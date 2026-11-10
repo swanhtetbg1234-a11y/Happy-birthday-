@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2c003e, #512b58);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            position: relative;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .gif-container img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 60px;
+        }
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+        #yesBtn {
+            background-color: #ff4757;
+            color: white;
+            box-shadow: 0 4px 10px rgba(255, 71, 87, 0.4);
+            z-index: 10;
+        }
+        #noBtn {
+            background-color: #f1f2f6;
+            color: #2f3640;
+            position: absolute;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="gif-container">
+            <!-- ချစ်စရာ ကာတွန်းပုံ (GIF) -->
+            <img src="https://media.giphy.com/media/26vUGP4qF3k9N.gif" alt="Cute Cat">
+        </div>
+        <h1 id="question">ငါ့ကို ချစ်လားဟင်? ❤️</h1>
+        <div class="btn-group">
+            <button id="yesBtn" onclick="sayYes()">ချစ်တယ် 🥰</button>
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">မချစ်ဘူး 😒</button>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const question = document.getElementById('question');
+
+        function moveButton() {
+            // "မချစ်ဘူး" ခလုတ်လေး နေရာရွှေ့သွားစေရန်
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 100);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 100);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${Math.max(20, x)}px`;
+            noBtn.style.top = `${Math.max(20, y)}px`;
+        }
+
+        // ဖုန်းတို့ဖန်သားပြင်များအတွက် ထိလိုက်လျှင် ရှောင်ထွက်ရန်
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        function sayYes() {
+            question.innerHTML = "ဟီးဟီး ငါလည်း ကိုယ့်ကိုကိုယ် ချစ်ပါတယ် 😜💖";
+            document.querySelector('.btn-group').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
